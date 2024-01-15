@@ -6,14 +6,14 @@ const chatSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  time: {
-    type: String,
-    required: true,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
+  // time: {
+  //   type: String,
+  //   required: true,
+  // },
+  // createdAt: {
+  //   type: Date,
+  //   default: Date.now,
+  // },
 });
 
 

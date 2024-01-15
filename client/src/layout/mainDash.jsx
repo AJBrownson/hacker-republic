@@ -4,33 +4,54 @@ import io from "socket.io-client";
 
 const socket = io("http://localhost:5000");
 
+
+
+
 const MainDash = () => {
   const getDate = new Date();
   const displayTime = getDate.toLocaleTimeString();
 
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
-  const [time, setTime] = useState(displayTime);
+  // const [time, setTime] = useState(displayTime);
+
+  // useEffect(() => {
+  //   socket.on("message", (data) => {
+  //     setMessages((messages) => [...messages, data]);
+  //   });
+
+  //   // Clean up event listeners on unmounting
+  //   return () => {
+  //     socket.off("message");
+  //   };
+  // }, [messages]);
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (message) {
+  //     socket.emit("message", { message});
+  //     setMessage("");
+  //     // setTime(displayTime);
+  //   }
+  // };
 
   useEffect(() => {
-    socket.on("message", (data) => {
-      setMessages((messages) => [...messages, data]);
+    // Listen for incoming chat messages from the server
+    socket.on('chatMessage', (data) => {
+      setMessages([...messages, data]);
     });
 
     // Clean up event listeners on unmounting
     return () => {
-      socket.off("message");
+      socket.off('chatMessage');
     };
   }, [messages]);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (message && time) {
-      socket.emit("message", { message, time });
-      setMessage("");
-      setTime(displayTime);
-    }
-  };
+  const sendMessage = () => {
+    // Send a chat message to the server
+    socket.emit('chatMessage', { message });
+    setMessage('');
+  };  
 
   return (
     <>
@@ -42,39 +63,38 @@ const MainDash = () => {
 
         {/* Chat messages */}
         <div className="flex-1 p-4 overflow-y-auto">
-          <ul>
-            {messages.map((message, index) => (
-              <li key={index}>
-                {message.time}: {message.message}
-              </li>
-            ))}
-          </ul>
+          {messages.map((msg, index) => (
+          <div key={index}>
+            <p>{msg.message}</p>
+          </div>
+        ))}
         </div>
 
         {/* Chat input */}
         <div className="p-4 border-t border-gray-800">
-          <form onSubmit={handleSubmit}>
+          {/* <form> */}
             <div className="relative">
               <input
                 type="text"
                 placeholder="Type a message..."
                 value={message}
-                onChange={(event) => setMessage(event.target.value)}
+                onChange={(e) => setMessage(e.target.value)}
                 className="w-full rounded-full px-4 py-2 border bg-gray-700 border-gray-700 focus:outline-none"
               />
-              <input
+              {/* <input
                 value={time}
                 type="hidden"
                 onChange={(event) => setTime(event.target.value)}
-              />
+              /> */}
               <button
                 type="submit"
+                onClick={sendMessage}
                 className="absolute top-1 right-4 bg-slate-500 px-3 py-1 rounded-xl"
               >
                 Send
               </button>
             </div>
-          </form>
+          {/* </form> */}
         </div>
       </div>
     </>
