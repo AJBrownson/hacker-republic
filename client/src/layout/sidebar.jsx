@@ -11,20 +11,15 @@ const Sidebar = () => {
 
         {/* Chat list */}
         <div className="flex-1 overflow-y-auto">
-          {/* Sample chat items */}
-          <div className="p-4 hover:bg-gray-100 cursor-pointer">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <div className="h-10 w-10 rounded-full bg-gray-300"></div>
-                <div className="ml-3">
-                  <p className="font-semibold">John Doe</p>
-                  <p className="text-sm text-gray-500">Hello there!</p>
-                </div>
-              </div>
-              <p className="text-xs text-gray-500">10:30 AM</p>
-            </div>
+          <div className="p-4">
+            <ul className="px-4">
+              <li className="py-2 cursor-pointer">Browse the Forum</li>
+              <li className="py-2 cursor-pointer">Send a Message</li>
+              <li className="py-2 cursor-pointer">Search the Archive</li>
+              <li className="font-extrabold py-2 cursor-pointer">Talk</li>
+              <li className="py-2 cursor-pointer">Get Laid?</li>
+            </ul>
           </div>
-          {/* End of sample chat items */}
         </div>
       </div>
     </>

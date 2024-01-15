@@ -2,7 +2,7 @@
 // import React from 'react'
 
 const RightBar = () => {
-  const members = [
+  const onlineMembers = [
     {
       name: "Andy",
     },
@@ -35,6 +35,56 @@ const RightBar = () => {
     },
   ];
 
+  const allMembers = [
+    {
+      name: "Andy",
+    },
+    {
+      name: "Bambi",
+    },
+    {
+      name: "Dakota",
+    },
+    {
+      name: "Jabba",
+    },
+    {
+      name: "BuckRogers",
+    },
+    {
+      name: "AliBaba",
+    },
+    {
+      name: "Mandrake",
+    },
+    {
+      name: "Slip",
+    },
+    {
+      name: "Mordred",
+    },
+    {
+      name: "SisterJen",
+    },
+    {
+      name: "SixOfOne",
+    },
+    {
+      name: "Trinity",
+    },
+    {
+      name: "Xerox",
+    },
+    {
+      name: "FortKnox",
+    },
+    {
+      name: "Hannibal",
+    },
+  ];
+
+  
+
   return (
     <>
       <div className="flex flex-col w-1/4 border-l text-white border-gray-800">
@@ -45,7 +95,7 @@ const RightBar = () => {
         <div className="flex-1 overflow-y-auto">
           <details className="p-4">
             <summary className="cursor-pointer">Who's Online?</summary>
-            {members.map((item, index) => (
+            {onlineMembers.map((item, index) => (
               <ul key={index} className="px-4 py-1">
                 <li>{item.name}</li>
               </ul>
@@ -54,7 +104,7 @@ const RightBar = () => {
 
           <details className="p-4">
             <summary className="cursor-pointer">All Members</summary>
-            {members.map((item, index) => (
+            {allMembers.map((item, index) => (
               <ul key={index} className="px-4 py-1">
                 <li>{item.name}</li>
               </ul>

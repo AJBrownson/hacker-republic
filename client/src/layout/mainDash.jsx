@@ -13,27 +13,7 @@ const MainDash = () => {
 
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
-  // const [time, setTime] = useState(displayTime);
-
-  // useEffect(() => {
-  //   socket.on("message", (data) => {
-  //     setMessages((messages) => [...messages, data]);
-  //   });
-
-  //   // Clean up event listeners on unmounting
-  //   return () => {
-  //     socket.off("message");
-  //   };
-  // }, [messages]);
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   if (message) {
-  //     socket.emit("message", { message});
-  //     setMessage("");
-  //     // setTime(displayTime);
-  //   }
-  // };
+  const [time, setTime] = useState(displayTime);
 
   useEffect(() => {
     // Listen for incoming chat messages from the server
@@ -64,8 +44,8 @@ const MainDash = () => {
         {/* Chat messages */}
         <div className="flex-1 p-4 overflow-y-auto">
           {messages.map((msg, index) => (
-          <div key={index}>
-            <p>{msg.message}</p>
+          <div key={index} className='mb-2'>
+            <p className="text-right">{msg.message}</p>
           </div>
         ))}
         </div>
@@ -81,11 +61,11 @@ const MainDash = () => {
                 onChange={(e) => setMessage(e.target.value)}
                 className="w-full rounded-full px-4 py-2 border bg-gray-700 border-gray-700 focus:outline-none"
               />
-              {/* <input
+              <input
                 value={time}
                 type="hidden"
                 onChange={(event) => setTime(event.target.value)}
-              /> */}
+              />
               <button
                 type="submit"
                 onClick={sendMessage}
